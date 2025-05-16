@@ -1,4 +1,186 @@
 <!DOCTYPE html>
 <html lang="ja">
-<!-- ...（省略：ユーザーのHTML本文全体）... -->
-</html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Vidu ツール取扱説明書</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to right, #f9fafb, #eef2f7);
+      color: #333;
+      line-height: 1.8;
+      padding: 40px;
+      max-width: 1000px;
+      margin: auto;
+      scroll-behavior: smooth;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+      z-index: 999;
+    }
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      justify-content: center;
+    }
+    nav a {
+      text-decoration: none;
+      color: #1d4ed8;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .disclaimer {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      color: #856404;
+      padding: 15px 20px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #1e40af;
+      margin: 60px 0 40px;
+      animation: fadeIn 1s ease-out;
+    }
+    h2 {
+      color: #1d4ed8;
+      border-bottom: 2px solid #1d4ed8;
+      padding-bottom: 4px;
+      margin-top: 60px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    p, ul {
+      margin-left: 1em;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    ul {
+      padding-left: 1em;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    strong {
+      color: #111827;
+    }
+    code {
+      background: #f3f4f6;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#start-frame">Start & End Frame</a></li>
+      <li><a href="#reference">Reference to Video</a></li>
+      <li><a href="#q1">First-to-Last Frame</a></li>
+      <li><a href="#prompt">プロンプト</a></li>
+      <li><a href="#image">画像選定</a></li>
+      <li><a href="#links">参考リンク</a></li>
+    </ul>
+  </nav>
+
+  <div class="disclaimer">
+    <strong>ご注意:</strong> このページは個人による学習・実験目的で作成された非公式ガイドです。内容は正確性や最新性を保証するものではなく、掲載されたリンク先や引用についても各著作権者に帰属します。
+  </div>
+
+  <h1>Vidu ツール取扱説明書</h1>
+
+  <h2 id="start-frame">🎬 1. Start Frame & End Frame（Image to Video）</h2>
+<p><strong>概要:</strong> 1枚または2枚の画像を基に、AIがその間の動きを補完して動画を生成します。</p>
+<ul>
+  <li>Start Frame: 動画の開始時の画像。</li>
+  <li>End Frame: 動画の終了時の画像。</li>
+</ul>
+<p><strong>活用例:</strong></p>
+<ul>
+  <li>キャラクターが歩き出すシーンから目的地に到着するシーンまでの移動を表現。</li>
+  <li>風景の時間経過（朝から夕方）を表現。</li>
+</ul>
+<p><strong>ポイント:</strong></p>
+<ul>
+  <li>「Add End Frame」機能で、2枚の画像間の動きを補完。</li>
+  <li>「Swap image order」で順序を逆にすることも可能。</li>
+</ul>
+<p><strong>参考情報:</strong></p>
+<ul>
+  <li><a href="https://note.com/neco4699/n/n1aafc9900f6e">Viduの【Image to Video】実践ガイド</a></li>
+  <li><a href="https://ai-illust-kouryaku.com/archives/34923">Viduの使い方（高画質化）</a></li>
+</ul>
+
+<h2 id="reference">🎥 2. Reference to Video</h2>
+<p><strong>概要:</strong> 複数の画像やプロンプトを参照し、より詳細な動きやシーンを指定して動画を生成します。</p>
+<ul>
+  <li>キャラクターと背景を別々に指定。</li>
+  <li>キャラクターの一貫性ある動作。</li>
+  <li>特定の部位（顔など）だけを参照。</li>
+</ul>
+<p><strong>参考情報:</strong></p>
+<ul>
+  <li><a href="https://note.com/neco4699/n/n90e8009ad01b">Reference to Video活用法</a></li>
+  <li><a href="https://ai-illust-kouryaku.com/archives/34923">Viduの使い方（高画質化）</a></li>
+</ul>
+
+<h2 id="q1">🎞️ 3. First-to-Last Frame（Vidu Q1）</h2>
+<p><strong>概要:</strong> 複数シーンの開始・終了フレームをつなげて連続動画を生成。</p>
+<p><strong>活用例:</strong> 猫が草むら → 海辺 → 夕焼け、などのストーリー作成。</p>
+<p><strong>参考情報:</strong></p>
+<ul>
+  <li><a href="https://zenn.dev/taku_sid/articles/20250422_viduq1_guide">Vidu Q1入門</a></li>
+</ul>
+
+<h2 id="prompt">✏️ プロンプトの工夫</h2>
+<ul>
+  <li>動作や環境を具体的に描写（例: 雪の積もった冬の森）</li>
+  <li>視点やカメラワークの明示</li>
+  <li>英語プロンプトを活用すると精度が向上する傾向</li>
+</ul>
+<p><strong>参考:</strong> <a href="https://note.com/neco4699/n/nafa1dd297345">Text to Video活用のコツ</a></p>
+
+<h2 id="image">🖼️ 画像選定のポイント</h2>
+<ul>
+  <li>キャラクターと背景を別々に設定</li>
+  <li>画像の一部のみを参照指定可能</li>
+</ul>
+<p><strong>参考:</strong> <a href="https://note.com/neco4699/n/n90e8009ad01b">Reference活用法</a></p>
+
+<h2 id="links">🔗 参考になる動画やサイト</h2>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=Pvf82TUEdt0">使い方とリファレンス解説</a></li>
+  <li><a href="https://www.youtube.com/watch?v=2QLQcX0yilA">Vidu 2 Update動画</a></li>
+  <li><a href="https://www.youtube.com/watch?v=M_WjHdIOoD8">Multi-Reference機能解説</a></li>
+  <li><a href="https://ai-writing-encyclopedia.com/tool/vidu/">初心者向けVidu解説</a></li>
+</ul>
